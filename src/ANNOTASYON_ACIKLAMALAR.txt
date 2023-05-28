@@ -1,0 +1,206 @@
+ANATASYONLAR
+
+@Component Nedir?
++@Component, @Service ve @Repository gibi annotationlar Spring tarafından yönetilen bean'lerin oluşturulması için kullanılır.
++@Component annotation'ı ile işaretlenen sınıfların instance'ları otomatik olarak oluşturulur ve Spring Container'ına eklenir.
++@Component annotation'ı ile işaretlenen sınıfların instance'ları @Autowired annotation'ı ile işaretlenen sınıflara enjekte edilebilir.
+@Controller, @Service veya @Repository gibi etiketler, belirli tipteki bileşenleri tanımlamak için @Component etiketini genişletir.
+Spring Boot'ta bileşenlerin @Component etiketiyle belirtilmesi, yazılımın modülerliğini artırır,
+bağımlılıkların yönetimini kolaylaştırır ve bileşenleri sınıf bazında otomatik olarak tarar.
+Bu da uygulama geliştirme sürecini daha basit ve verimli hale getirir.
+------------------------------------------------------------------------------------------------------------------------
+@Autowired Nedir?
++@Autowired annotation'ı ile işaretlenen sınıfların instance'ları Spring Container'ından enjekte edilir.
++@Autowired annotation'ı ile işaretlenen sınıfların instance'ları @Component, @Service ve @Repository annotation'ları ile işaretlenen sınıflardan oluşturulur.
++@Autowired annotation'ı ile işaretlenen sınıfların instance'ları @Autowired annotation'ı ile işaretlenen sınıflardan oluşturulur.
+@Autowired, Spring Boot'ta kullanılan bir bağımlılık enjeksiyonu yöntemidir.
+Spring Boot, bağımlılık enjeksiyonunu yönetmek ve bileşenler arasındaki ilişkileri otomatik
+olarak yönetmek için bir dizi özellik sunar. @Autowired etiketi, Spring Boot bileşenlerinde
+bağımlılıkların otomatik olarak enjekte edilmesini sağlar.
+@Autowired etiketi, bir sınıfın alanları, setter metotları veya yapıcı metotları üzerine uygulanabilir
+------------------------------------------------------------------------------------------------------------------------
+@Qualifier Nedir?
+@Qualifier, Spring Boot'ta bağımlılık enjeksiyonu sırasında hangi örneğin enjekte edileceğini
+belirtmek için kullanılan bir etikettir. Spring Boot, @Autowired ile bir bileşen enjekte edildiğinde,
+eğer birden fazla uygun aday bulunursa, hangi adayın seçileceğini belirlemek için @Qualifier etiketi kullanılır.
+@Qualifier, bağımlılıkların özelleştirilmesini ve belirli bir adayın seçilmesini sağlar.
+------------------------------------------------------------------------------------------------------------------------
+@Primary Nedir?
++@Primary annotation'ı ile işaretlenen sınıfların instance'ları Spring Container'ına eklenir.
++@Primary annotation'ı ile işaretlenen sınıfların instance'ları @Autowired annotation'ı ile işaretlenen sınıflara enjekte edilir.
+@Primary, Spring Boot'ta bağımlılık enjeksiyonu sırasında hangi örneğin enjekte edileceğini belirtmek için kullanılan bir etikettir.
+@Primary etiketi, bağımlılıklar arasında tercih yapılması gereken durumlarda kullanılır ve Spring Boot'un bileşen seçimini yönlendirmesini sağlar
+------------------------------------------------------------------------------------------------------------------------
+
+@Bean Nedir?
+@Bean, Spring Boot'ta bir Java sınıfının bir bileşen olarak tanımlanmasını sağlayan bir etikettir.
+Spring Boot, @Bean etiketi kullanarak, özelleştirilmiş nesnelerin oluşturulmasını ve yönetilmesini
+sağlayan bir konfigürasyon yöntemi sunar.
+@Bean etiketi aynı zamanda yapılandırma sınıflarında özelleştirilmiş ayarların yapılandırılmasına da olanak tanır.
+ Örneğin, veritabanı bağlantısı veya harici bir servis yapılandırması gibi durumlarda,
+ @Bean etiketi kullanılarak ilgili ayarlar yapılandırma sınıfında belirtilebilir.
+
+
+//Sterotype Annotation'lar
+Bu ek açıklamalar, uygulama bağlamında Spring Bean'leri otomatik olarak oluşturmak için kullanılır.
+
+Ana basmakalıp açıklamaları şunlardır: @Component
+
+Bu ek açıklamayı kullanmak, @Repository, @Service, @Controller gibi daha fazla basmakalıp meta ek açıklama sağlar.
+
+@Service ek açıklaması, hizmet katmanında Spring çekirdekleri oluşturmak için kullanılır.
+
+@Repository, DAO katmanındaki depolar için Spring çekirdekleri oluşturmak için kullanılır.
+
+@Controller, controller katmanında Spring bean oluşturmak için kullanılır.
+
+------------------------------------------------------------------------------------------------------------------------
+
+@Lazy Annotasyon
+@Lazy, Spring Boot'ta bileşenlerin tembellikle (lazy) yüklenmesini sağlayan bir etikettir.
+Spring, varsayılan olarak bileşenleri konteyner başlatıldığında yükler.
+Ancak bazen uygulama başlatıldığında tüm bileşenlerin hemen yüklenmesi yerine,
+bileşenlerin ihtiyaç duyulduğunda yüklenmesini tercih edebilirsiniz. Bu durumda @Lazy etiketi kullanılır.
+@Lazy etiketi ayrıca @Autowired ile birlikte kullanılarak da etkinleştirilebilir.
+@Lazy etiketi, uygulama performansını artırmak ve kaynakların verimli kullanımını sağlamak için kullanılır.
+------------------------------------------------------------------------------------------------------------------------
+@Scope Anotasyon
+@Scope, Spring Boot'ta bir bileşenin yaratılma ve kullanılma süresini kontrol etmek için kullanılan bir etikettir.
+Spring, varsayılan olarak tek bir örnek (singleton) olarak oluşturulan bileşenleri kullanır.
+Singleton (Varsayılan): Spring, her uygulama bağlamında yalnızca bir örneği oluşturur ve bu örneği her talepte aynı örneği döndürür.
+Prototype: Her talepte yeni bir örnek oluşturulur. Her bir talep için farklı bir örnek döndürülür.
+Request: Her HTTP isteği için yeni bir örnek oluşturulur. Bir talep döngüsü boyunca aynı örnek kullanılır, ancak farklı talepler için farklı örnekler oluşturulur.
+Session: Her HTTP oturumu için bir örnek oluşturulur. Bir oturum boyunca aynı örnek kullanılır, farklı oturumlar için farklı örnekler oluşturulur.
+Application: Uygulama bağlamı boyunca bir örnek oluşturulur.
+Birden çok HTTP isteği veya oturumu paylaşan bileşenler için kullanılır.
+@Scope etiketi, bileşenlerin yaratılma ve kullanılma süresini kontrol etmek için kullanılır.
+@Scope etiketi, @Component, @Service ve @Repository gibi diğer Spring Boot bileşenlerinin üzerine uygulanabilir.
+------------------------------------------------------------------------------------------------------------------------
+@Value Anatosyon
+@Value, Spring Boot'ta bir bileşene değer atamak veya dışarıdan gelen bir değeri enjekte etmek için kullanılan bir etikettir.
+Özellik Dosyasından Değer Alma:
+Sistem Özelliğinden Değer Alma:
+Metot Parametresine Değer Enjekte Etme:
+vs. kullanılabilir.
+@Value etiketi, bileşenlerin yapılandırılmasında dışarıdan gelen değerleri kullanmayı sağlar.
+------------------------------------------------------------------------------------------------------------------------
+@PropertySource Anotasyon
+@PropertySource, Spring Boot'ta bir bileşenin yapılandırılmasında dışarıdan gelen değerleri kullanmayı sağlayan bir etikettir.
+@PropertySource, Spring Boot'ta harici bir özellik dosyasını uygulamaya eklemek ve bu dosyadaki özelliklere erişmek için kullanılan bir etikettir.
+@PropertySource etiketi, @Configuration sınıflarının üzerine uygulanır.
+@PropertySource etiketi, yapılandırma sınıflarında veya yapılandırma dosyalarında kullanılabilir
+@PropertySource etiketi, harici bir özellik dosyasının uygulamaya eklenmesini ve bu dosyadaki özelliklere erişimi kolaylaştırır
+
+------------------------------------------------------------------------------------------------------------------------
+@Controller Anotasyon
+@Controller, Spring Boot'ta web uygulamalarında kullanılan bir bileşen türüdür.
+Bu sınıf, bir MVC (Model-View-Controller) mimarisine uygun olarak uygulamanın kullanıcı arayüzüyle etkileşimini yönetir.
+
+@Controller sınıfı, HTTP isteklerini karşılamak ve ilgili iş mantığını yürütmek için kullanılır.
+Bu sınıflar genellikle Spring Boot web uygulamalarının denetleyicileridir ve belirli bir URI yoluna
+veya isteğe göre çalışacak metotları içerir.
+
+@Controller sınıfı, Spring Boot tarafından taranarak keşfedilir ve uygulama başlatıldığında yüklenir.
+İsteğe göre belirli bir URI yoluna veya HTTP isteğine uygun olan metotlar,
+@RequestMapping veya daha spesifik olan diğer istek eşlemeleriyle belirtilir.
+
+@Controller sınıfları genellikle Spring Boot'ta kullanıcı arayüzlerinin kontrolünü sağlar.
+
+@Controller sınıfları ayrıca @GetMapping, @PostMapping, @PutMapping, @DeleteMapping gibi daha spesifik
+HTTP istek yönlendirme etiketleriyle de kullanılabilir.
+------------------------------------------------------------------------------------------------------------------------
+@RestController Nedir?
+@RestController, Spring Boot framework'ünün bir bileşenidir ve RESTful web servislerini oluşturmak için kullanılır.
+REST (Representational State Transfer), web tabanlı uygulamaların kaynaklarına erişmek ve yönetmek
+için kullanılan bir mimari stilidir.
+@RestController, bir Java sınıfına uygulandığında, bu sınıfın Spring tarafından yönetilen bir bileşen
+olduğunu belirtir. Bu sınıf, HTTP isteklerini işleyen ve HTTP yanıtlarını oluşturan metotları içerir.
+Metotlar, belirli bir URL yoluna ve HTTP yöntemine (GET, POST, PUT, DELETE vb.) atanır.
+Bu şekilde, Spring Boot uygulaması, istemcilerle (genellikle web tarayıcıları veya diğer uygulamalar)
+iletişim kurmak için kullanılan RESTful API'ler sağlar.
+@RestController, metotların döndürdüğü nesneleri otomatik olarak JSON (JavaScript Object Notation)
+formatına dönüştürerek, istemcilere JSON formatında veri sağlama yeteneğine de sahiptir
+
+Özetle, @RestController, Spring Boot ile RESTful web servislerinin oluşturulmasını sağlayan bir anotasyondur
+------------------------------------------------------------------------------------------------------------------------
+@RequestMapping Nedir?
+@RequestMapping, Spring Boot framework'ünün bir bileşenidir ve bir sınıf veya metot üzerindeki
+HTTP isteklerini belirlemek için kullanılır. Bu anotasyon, Spring MVC (Model-View-Controller) mimarisini
+temel alır ve Spring Boot uygulamasında HTTP isteklerini işlemek için kullanılır.
+
+@RequestMapping anotasyonu, bir Java sınıfına veya metoda uygulandığında, bu sınıfın veya
+ metotun belirli bir URL yoluna ve HTTP yöntemine (GET, POST, PUT, DELETE vb.) yanıt vereceğini belirtir.
+
+@RequestMapping anotasyonu ayrıca ek parametrelerle kullanılabilir.
+Örneğin, belirli bir URL yolunun yanı sıra isteğin kabul edilebilir medya türünü
+(örneğin, JSON veya XML) veya diğer istek niteliklerini belirtmek için kullanılabilir.
+
+Özetle, @RequestMapping, Spring Boot ile HTTP isteklerini işlemek ve belirli URL yolları ve HTTP
+yöntemleriyle ilişkilendirmek için kullanılan bir anotasyondur
+------------------------------------------------------------------------------------------------------------------------
+
+@GetMapping Nedir?
+@GetMapping, Spring Boot framework'ünün bir bileşenidir ve HTTP GET isteklerini belirlemek için kullanılır.
+Bu anotasyon, Spring MVC (Model-View-Controller) mimarisini temel alır ve Spring Boot uygulamasında
+HTTP GET isteklerini işlemek için kullanılır.
+
+Bir metodun üzerine @GetMapping anotasyonu eklediğinizde, bu metodun belirli bir URL yolunda çalışacağını
+belirtmiş olursunuz. Bu anotasyon aynı zamanda metodun hangi HTTP metodunu (GET, POST, PUT, DELETE, vb.)
+karşılayacağını belirtmek için kullanılır.
+
+@RestController anotasyonu sınıfı bir REST denetleyici olarak işaretler. @GetMapping anotasyonu,
+hello() metodunu "/hello" yolunda bir GET isteğini karşılamak için kullanır.
+
+------------------------------------------------------------------------------------------------------------------------
+@PostMapping Nedir?
+@PostMapping, Spring Boot'ta kullanılan bir anotasyondur. Spring MVC (Model-View-Controller)
+mimarisini destekleyen Spring Boot, HTTP POST isteklerini karşılamak için bu anotasyonu kullanır.
+
+@PostMapping anotasyonunu kullanarak Spring Boot'ta belirli bir URL yolunda çalışacak ve POST isteklerini
+karşılayacak metodları tanımlayabilirsiniz. Benzer şekilde, diğer HTTP metodlarını destekleyen anotasyonlar
+da mevcuttur (örneğin @GetMapping, @PutMapping, @DeleteMapping vb.), bu sayede farklı türde istekleri
+karşılamak mümkün olur.
+
+------------------------------------------------------------------------------------------------------------------------
+@PutMapping Nedir?
+
+@PutMapping, Spring Boot'ta kullanılan bir anotasyondur. Spring MVC (Model-View-Controller)
+mimarisini destekleyen Spring Boot, HTTP PUT isteklerini karşılamak için bu anotasyonu kullanır.
+
+Bir metodun üzerine @PutMapping anotasyonu eklediğinizde, bu metodun belirli bir URL yolunda
+çalışacağını ve HTTP PUT isteklerini karşılayacağını belirtmiş olursunuz.
+
+Update isteği gönderilirken kullanılan anotasyondur.
+
+------------------------------------------------------------------------------------------------------------------------
+@DeleteMapping Nedir?
+
+@DeleteMapping, Spring Boot'ta kullanılan bir anotasyondur. Spring MVC (Model-View-Controller)
+mimarisini destekleyen Spring Boot, HTTP DELETE isteklerini karşılamak için bu anotasyonu kullanır.
+
+@DeleteMapping anotasyonu eklediğinizde, bu metodun belirli bir URL yolunda çalışacağını ve
+HTTP DELETE isteklerini karşılayacağını belirtmiş olursunuz.
+
+@DeleteMapping anotasyonu, deleteUser() metodunu "/deleteUser/{id}" yolunda bir
+DELETE isteğini karşılamak için kullanır.
+
+@DeleteMapping anotasyonunu kullanarak Spring Boot'ta belirli bir URL yolunda çalışacak ve
+DELETE isteklerini karşılayacak metodları tanımlayabilirsiniz.
+
+------------------------------------------------------------------------------------------------------------------------
+@PathVariable Nedir?
+
+@PathVariable, Spring Boot'ta kullanılan bir anotasyondur. Bu anotasyon, bir HTTP isteğinin URL'sinden
+değişkenleri almak için kullanılır.
+Spring MVC (Model-View-Controller) mimarisinde, URL'nin dinamik bölümlerine parametreler atanabilir
+ve bu parametrelere erişmek için @PathVariable anotasyonu kullanılır.
+
+Bir metodun parametresi üzerine @PathVariable anotasyonunu eklediğinizde,
+Spring Boot, isteğin URL'sinden ilgili parametreyi alır ve o parametreye değeri atar.
+
+@PathVariable anotasyonunu kullanarak Spring Boot'ta URL'den değişkenleri alabilir ve bu
+değişkenlere erişebilirsiniz. Bu, dinamik URL yapılarında parametreleri yakalamak ve ilgili
+işlemleri gerçekleştirmek için kullanışlı bir anotasyondur.
+
+------------------------------------------------------------------------------------------------------------------------
+
