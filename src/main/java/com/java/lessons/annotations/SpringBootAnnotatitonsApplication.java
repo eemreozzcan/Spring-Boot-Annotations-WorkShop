@@ -69,7 +69,7 @@ public class SpringBootAnnotatitonsApplication {
 
 		LazyLoader lazyLoader = context.getBean(LazyLoader.class);
 
-		//Bean isim verildiği için bu şekilde de çağırılabilir.
+		//Since Bean is named, it can also be called this way.
 		//VegPizza vegPizza = (VegPizza) context.getBean("vegPizzaBean");
 		//System.out.println(vegPizza.getPizza());
 */

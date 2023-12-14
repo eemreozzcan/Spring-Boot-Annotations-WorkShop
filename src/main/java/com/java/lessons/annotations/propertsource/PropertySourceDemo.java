@@ -5,25 +5,27 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component/*The @Component annotation is used to mark a Java class as a component in a Spring application, allowing it to be automatically
+ detected and managed.*/
 public class PropertySourceDemo
 {
+    /*The @Autowired annotation enables the automatic injection of a component of type Environment in a Spring application.*/
     @Autowired
     private Environment env;
 
-    //@Value("${gmail.host}")
+    //@Value("${gmail.host}") /*It is used to inject the value of the 'host' property in a Spring application.*/
     private String host;
 
-    //@Value("${gmail.email}")
+    //@Value("${gmail.email}") /*It is used to inject the value of the 'email' property in a Spring application.*/
     private String email;
 
-    //@Value("${gmail.password}")
+    //@Value("${gmail.password}") /*It is used to inject the value of the 'password' property in a Spring application.*/
     private String password;
 
-    //@Value("${app.name}")
+    //@Value("${app.name}") /*It is used to inject the value of the 'name' property in a Spring application.*/
     private String appName;
 
-    //@Value("${app.description}")
+    //@Value("${app.description}") /*It is used to inject the value of the 'description' property in a Spring application.*/
     private String appDescription;
 
 

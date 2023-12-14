@@ -1,5 +1,7 @@
 package com.java.lessons.annotations.beans;
 
+/*This Java class represents a data structure for a book, including its identifier (id), title, and description. It also has both parameterized
+and parameterless constructor methods, along with methods for accessing and modifying these properties.*/
 public class Book
 {
     private int id;
