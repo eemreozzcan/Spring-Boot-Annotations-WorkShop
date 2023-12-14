@@ -49,8 +49,11 @@ performance and ensure efficient resource utilization.
 @Scope is an annotation used in Spring Boot to control the creation and usage duration of a component.
 
 Singleton (Default): In Spring, it creates only one instance per application context and returns the same instance for each request.
+
 Prototype: A new instance is created for each request. A different instance is returned for each request.
+
 Request: A new instance is created for each HTTP request. The same instance is used throughout a request cycle, but different instances are created for different requests.
+
 Session: An instance is created for each HTTP session. The same instance is used throughout a session, but different instances are created for different sessions.
 
 # @Value
